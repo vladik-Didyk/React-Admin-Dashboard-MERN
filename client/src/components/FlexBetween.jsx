@@ -1,11 +1,10 @@
-import React from 'react'
+const { Box } = require("@mui/material");
+const { styled } = require("@mui/system");
 
-const FlexBetween = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+const FlexBetween = styled(Box)({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
 
-export default FlexBetween
+export default FlexBetween;
