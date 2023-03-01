@@ -1,8 +1,13 @@
-import { CssBaseline, ThemeProvider } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
-import { themeSettings } from "./theme";
+import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
+
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { themeSettings } from "theme";
+
+import Layout from "scenes/layout";
+import Dashboard from "scenes/dashboard";
 
 function App() {
   // Get the selected mode from the global Redux store
@@ -15,10 +20,18 @@ function App() {
   // Render the app with the selected theme and a baseline CSS reset
 
   return (
-    <div className="App">
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-      </ThemeProvider>
+    <div className="app">
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Route>
+          </Routes>
+        </ThemeProvider>
+      </BrowserRouter>
     </div>
   );
 }
