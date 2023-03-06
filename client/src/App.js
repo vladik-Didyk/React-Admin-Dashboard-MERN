@@ -8,6 +8,7 @@ import { themeSettings } from "theme";
 
 import Layout from "scenes/layout";
 import Dashboard from "scenes/dashboard";
+import Products from "scenes/products";
 
 function App() {
   // Get the selected mode from the global Redux store
@@ -28,6 +29,7 @@ function App() {
             <Route element={<Layout />}>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/products" element={<Products />} />
             </Route>
           </Routes>
         </ThemeProvider>
