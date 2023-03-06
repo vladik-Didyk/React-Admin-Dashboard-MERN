@@ -22,7 +22,7 @@ export const api = createApi({
 });
 
 // Export a hook for the "getUser" endpoint
-export const { useGetUserQuerys } = api;
+export const { useGetUserQuery } = api;
 
 /*
 The above code creates an instance of the Redux Toolkit API using createApi() function provided by Redux Toolkit. It sets the base URL for the API requests using the fetchBaseQuery() function from the @reduxjs/toolkit/query/react package. It also sets the name of the Redux Toolkit slice where the API state will be stored and the available tag types used for query caching.
