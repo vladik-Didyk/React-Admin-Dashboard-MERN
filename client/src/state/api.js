@@ -9,7 +9,7 @@ export const api = createApi({
   reducerPath: "adminApi",
 
   // Define the available tag types used for query caching
-  tagTypes: ["User", "Products", "Customers", "Transactions"],
+  tagTypes: ["User", "Products", "Customers", "Transactions", "Geography"],
 
   // Define the available endpoints for the API
   endpoints: (build) => ({
@@ -34,6 +34,10 @@ export const api = createApi({
       }),
       providesTags: ["Transactions"],
     }),
+    getGeography: build.query({
+      query: () => `client/geography`,
+      providesTags: ["Geography"],
+    }),
   }),
 });
 
@@ -43,6 +47,7 @@ export const {
   useGetProductsQuery,
   useGetCustomersQuery,
   useGetTransactionsQuery,
+  useGetGeographyQuery,
 } = api;
 
 /*
