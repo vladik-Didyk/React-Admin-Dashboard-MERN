@@ -1,0 +1,104 @@
+import React, { useState } from "react";
+import { Box, useTheme } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
+import { useGetTransactionsQuery } from "state/api";
+import Header from "components/Header";
+
+const Transactions = () => {
+  const theme = useTheme();
+
+  // values to be sent to the backend
+  const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(20);
+  const [sort, setSort] = useState({});
+  const [search, setSearch] = useState("");
+
+  const { data, isLoading } = useGetTransactionsQuery({
+    page,
+    pageSize,
+    sort: JSON.stringify(sort),
+    search,
+  });
+
+  const columns = [
+    {
+      field: "_id",
+      headerName: "ID",
+      flex: 1,
+    },
+    {
+      field: "userId",
+      headerName: "User ID",
+      flex: 0.5,
+    },
+    {
+      field: "createdAt",
+      headerName: "CreatedAt",
+      flex: 1,
+    },
+    {
+      field: "products",
+      headerName: "# of Products",
+      flex: 0.5,
+      sorttable: false,
+      renderCell: (params) => params.value.length,
+    },
+    {
+      field: "cost",
+      headerName: "Cost",
+      flex: 1,
+      renderCell: (params) => `$${Number(params.value).toFixed(2)}`,
+    } /* As a result of a data creation error, it will not work properly (Should be a number) */,
+  ];
+
+  return (
+    <Box m="1.5rem 2.5rem">
+      <Header title="TRANSACTIONS" subtitle="Emtire list of Transactions" />
+      <Box
+        height="80vh"
+        sx={{
+          "& .MuiDataGrid-root": {
+            border: "none",
+          },
+          "& .MuiDataGrid-cell": {
+            border: "none",
+          },
+          "& .MuiDataGrid-columnsHeader": {
+            backgroundColor: theme.palette.background.alt,
+            color: theme.palette.secondary[100],
+            borderBottom: "none",
+          },
+          "& .MuiDataGrid-virtualScroller": {
+            backgroundColor: theme.palette.primary.light,
+          },
+          "& .MuiDataGrid-footerContainer": {
+            backgroundColor: theme.palette.primary.light,
+            color: theme.palette.secondary[100],
+            borderTop: "none",
+          },
+          "& .MuiDataGrid-toolBarContainer .MuiButton-text": {
+            backgroundColor: `${theme.palette.secondary[200]} !important`,
+          },
+        }}
+      >
+        <DataGrid
+          loading={isLoading || !data}
+          getRowId={(row) => row._id}
+          rows={(data && data.transactions) || []}
+          columns={columns}
+          rowCount={(data && data.total) || 0}
+          pagination
+          page={page}
+          pageSize={pageSize}
+          paginationMode="server"
+          sortingMode="server"
+          onPageChange={(newPage) => setPage(newPage)}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+          onSortModelChange={(newSortModel) => setSort(...newSortModel)}
+        />
+      </Box>
+    </Box>
+  );
+};
+
+export default Transactions;
