@@ -9,7 +9,7 @@ export const api = createApi({
   reducerPath: "adminApi",
 
   // Define the available tag types used for query caching
-  tagTypes: ["User", "Products"],
+  tagTypes: ["User", "Products", "Customers"],
 
   // Define the available endpoints for the API
   endpoints: (build) => ({
@@ -22,11 +22,16 @@ export const api = createApi({
       query: () => `client/products`,
       providesTags: ["Products"],
     }),
+    getCustomers: build.query({
+      query: () => `client/customers`,
+      providesTags: ["Customers"],
+    }),
   }),
 });
 
 // Export a hook for the "getUser" endpoint
-export const { useGetUserQuery, useGetProductsQuery } = api;
+export const { useGetUserQuery, useGetProductsQuery, useGetCustomersQuery } =
+  api;
 
 /*
 The above code creates an instance of the Redux Toolkit API using createApi() function provided by Redux Toolkit. It sets the base URL for the API requests using the fetchBaseQuery() function from the @reduxjs/toolkit/query/react package. It also sets the name of the Redux Toolkit slice where the API state will be stored and the available tag types used for query caching.
