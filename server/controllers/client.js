@@ -1,3 +1,5 @@
+import getCountryIso3 from "country-iso-2-to-3";
+
 // Import the Product, ProductStat, User, and Transaction models
 import Product from "../models/Product.js";
 import ProductStat from "../models/ProductStat.js";
@@ -85,6 +87,41 @@ export const getTransactions = async (req, res) => {
       transactions,
       total,
     });
+  } catch (error) {
+    // If an error occurs, send the response to the client with a 404 status code and an error message
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// Define an asynchronous function that retrieves the location data of all users
+export const getGeography = async (req, res) => {
+  try {
+    // Retrieve all users from the database
+    const users = await User.find();
+
+    // Map over each user to group them by country using the "reduce" method
+    const mappedLocations = users.reduce((acc, { country }) => {
+      // Convert the country name to its ISO 3166-1 alpha-3 code using the "getCountryIso3" function
+      const countryISO3 = getCountryIso3(country);
+      // If the country code has not been encountered before, add it to the accumulator object and set the count to 0
+      if (!acc[countryISO3]) {
+        acc[countryISO3] = 0;
+      }
+      // Increment the count for the current country code
+      acc[countryISO3]++;
+      return acc;
+    }, {});
+
+    // Convert the "mappedLocations" object to an array of objects with "id" and "value" properties
+    const formattedLocations = Object.entries(mappedLocations).map(
+      ([country, count]) => {
+        return { id: country, value: count };
+      }
+    );
+
+    // Send the response to the client with a 200 status code and the formatted location data
+    res.status(200).json(formattedLocations);
+
   } catch (error) {
     // If an error occurs, send the response to the client with a 404 status code and an error message
     res.status(404).json({ message: error.message });
