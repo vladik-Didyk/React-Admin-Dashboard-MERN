@@ -71,7 +71,7 @@ export const {
   useGetGeographyQuery,
   useGetSalesQuery,
   useGetAdminsQuery,
-  useUserPerformanceQuery,
+  useGetUserPerformanceQuery,
 } = api;
 
 /*
