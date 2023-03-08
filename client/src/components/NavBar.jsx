@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import profileImage from "assets/images/profile.jpg";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -7,7 +8,6 @@ import {
   SettingsOutlined,
   ArrowDropDownOutlined,
 } from "@mui/icons-material";
-import profileImage from "assets/images/profile.png";
 
 import FlexBetween from "components/FlexBetween";
 import { useDispatch } from "react-redux";
