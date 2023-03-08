@@ -41,7 +41,7 @@ export const getUserPerformance = async (req, res) => {
     ]);
 
     // Get sales transactions for the user
-    const salesTransactions = await Transaction.all(
+    const salesTransactions = await Promise.all(
       userWithStats[0].affiliateStats.affiliateSales.map((id) => {
         return Transaction.findById(id);
       })
