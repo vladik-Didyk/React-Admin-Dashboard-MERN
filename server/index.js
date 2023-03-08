@@ -21,7 +21,7 @@ import {
   dataProduct,
   dataProductStat,
   dataTransaction,
-  dataOverallStat,
+  dataOverallStat /*The data is only for 2021 */,
 } from "./data/index.js";
 
 /* CONFIGURATION */
