@@ -20,9 +20,6 @@ const Layout = () => {
   // Use the 'useGetUserQuery' hook to fetch user data from the API
   const { data } = useGetUserQuery(userId);
 
-  // Log the fetched data to the console
-  console.log("🚀 ~ file: index.jsx:14 ~ Layout ~ data:", data);
-
   // Return a 'Box' component with the display property set to "flex" if the screen is non-mobile, or "block" if it is mobile. It also has a width and height set to 100%.
   return (
     <Box display={isNonMobile ? "flex" : "block"} width="100%" height="100%">
