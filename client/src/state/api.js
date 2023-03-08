@@ -18,6 +18,7 @@ export const api = createApi({
     "Sales",
     "Admins",
     "Performance",
+    "Dashboard",
   ],
 
   // Define the available endpoints for the API
@@ -59,6 +60,10 @@ export const api = createApi({
       query: (id) => `management/performance/${id}`,
       providesTags: ["Performance"],
     }),
+    getDashboard: build.query({
+      query: () => "general/dashboard",
+      providesTags: ["Dashboard"],
+    }),
   }),
 });
 
@@ -72,6 +77,7 @@ export const {
   useGetSalesQuery,
   useGetAdminsQuery,
   useGetUserPerformanceQuery,
+  useGetDashboardQuery,
 } = api;
 
 /*
