@@ -57,20 +57,24 @@ const Daily = () => {
       <Header title="DAILY SALES" subtitle="Daily of daily sales." />
       <Box height="75vh">
         <Box display="flex" justifyContent="flex-end">
-          <DatePicker
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            selectsStart
-            startDate={startDate}
-            endDate={endtDate}
-          />
-          <DatePicker
-            selected={endtDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={endtDate}
-            endDate={startDate}
-          />
+          <Box>
+            <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              selectsStart
+              startDate={startDate}
+              endDate={endtDate}
+            />
+          </Box>
+          <Box>
+            <DatePicker
+              selected={endtDate}
+              onChange={(date) => setEndDate(date)}
+              selectsEnd
+              startDate={endtDate}
+              endDate={startDate}
+            />
+          </Box>
         </Box>
 
         {data ? (
