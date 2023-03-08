@@ -12,6 +12,9 @@ export const getProducts = async (req, res) => {
     // Retrieve all products from the database
     const products = await Product.find();
 
+    /**
+     * Slow operation (management.js I did similar with "aggregate" )
+     */
     // Retrieve the statistics for each product
     const productsWithStats = await Promise.all(
       products.map(async (product) => {
@@ -121,7 +124,6 @@ export const getGeography = async (req, res) => {
 
     // Send the response to the client with a 200 status code and the formatted location data
     res.status(200).json(formattedLocations);
-
   } catch (error) {
     // If an error occurs, send the response to the client with a 404 status code and an error message
     res.status(404).json({ message: error.message });
