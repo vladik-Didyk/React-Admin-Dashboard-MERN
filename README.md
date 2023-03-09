@@ -1,12 +1,12 @@
 # React-Admin-Dashboard-MERN
 
-# On the FrontEnd I will use:
+# FrontEnd
 * Material UI
 * Material UI Data Grid
 * Nivo Charts
 * Redux Toolkit and Redux Toolkit Query.   
 
-# My backend will be composed:
+# BackEnd
 * Node JS
 * Express JS
 * Mongoose
