@@ -1,13 +1,18 @@
 # React-Admin-Dashboard-MERN
+* Acomprehensive React MERN Stack Admin Dashboard App.
 
-# FrontEnd
-* Material UI
-* Material UI Data Grid
-* Nivo Charts
-* Redux Toolkit and Redux Toolkit Query.   
+* Begin with backend packages, installations, configuration, and MongoDB setup.
 
-# BackEnd
-* Node JS
-* Express JS
-* Mongoose
-* MongoDB. 
+* Proceed with frontend installation and packages, focusing on color setup and MUI Light and Dark Mode themes using Redux Toolkit.
+
+* The frontend with Navbar and Sidebar with MUI, utilize RTK Query to inject mock data into MongoDB, and employ data modeling with ERD diagrams.
+
+* Develop various pages, such as:
+
+- Products and Customers
+- Transactions
+- Geography
+- Overview
+- Daily and Monthly
+- Breakdown
+- Admin Performance and Dashboard.
